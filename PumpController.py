@@ -9,27 +9,29 @@ if not os.getegid() == 0:
 from time import sleep
 from pyA20.gpio import gpio
 from pyA20.gpio import port
+from pyA20.gpio import connector
+import logging
+import datetime
 
+logging.basicConfig(filename='watering.log',level=logging.DEBUG)
 
-
-pump = port.PA12
 
 gpio.init()
-gpio.setcfg(pump, gpio.OUTPUT)
 
-try:
-    print ("Press CTRL+C to exit")
-    while True:
-        gpio.output(led, 1)
-        sleep(0.1)
-        gpio.output(led, 0)
-        sleep(0.1)
+gpio.setcfg(port.PG9, gpio.OUTPUT)
+gpio.setcfg(port.PE11, gpio.INPUT) 
 
-        gpio.output(led, 1)
-        sleep(0.1)
-        gpio.output(led, 0)
-        sleep(0.1)
 
-        sleep(0.6)
-except KeyboardInterrupt:
-    print ("Goodbye.")
+gpio.pullup(port.PE11, 0) #Clear pullups
+gpio.pullup(port.PE11, gpio.PULLDOWN) #Enable pull-down
+gpio.pullup(port.PE11, gpio.PULLUP) #Enable pull-up
+
+if gpio.input(port.PE11) == 1:
+gpio.output(port.PG9, gpio.HIGH)
+logging.info("Watering now : %s" % time.ctime())
+else:
+gpio.output(port.PG9, gpio.LOW)
+
+while gpio.input(port.PE11) == 0:
+    logging.info("lol just waiting : %s" % time.ctime())
+    
