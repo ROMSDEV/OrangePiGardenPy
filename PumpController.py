@@ -20,12 +20,12 @@ logging.basicConfig(filename='watering.log',level=logging.DEBUG)
 gpio.init()
 
 gpio.setcfg(port.PG9, gpio.OUTPUT)
-gpio.setcfg(port.PE11, gpio.INPUT) 
+gpio.setcfg(port.PE11, gpio.INPUT)
 
 
-gpio.pullup(port.PE11, 0) 
-gpio.pullup(port.PE11, gpio.PULLDOWN) 
-gpio.pullup(port.PE11, gpio.PULLUP) 
+gpio.pullup(port.PE11, 0)
+gpio.pullup(port.PE11, gpio.PULLDOWN)
+gpio.pullup(port.PE11, gpio.PULLUP)
 
 if gpio.input(port.PE11) == 1:
     gpio.output(port.PG9, 1)
@@ -37,5 +37,4 @@ else:
 
 while gpio.input(port.PE11) == 0:
     logging.info('lol just waiting : %s' % time.ctime())
-      time.sleep(60)
-    
+    time.sleep(60)
