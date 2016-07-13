@@ -12,6 +12,7 @@ from pyA20.gpio import port
 from pyA20.gpio import connector
 import logging
 import datetime
+import time
 
 logging.basicConfig(filename='watering.log',level=logging.DEBUG)
 
@@ -22,16 +23,19 @@ gpio.setcfg(port.PG9, gpio.OUTPUT)
 gpio.setcfg(port.PE11, gpio.INPUT) 
 
 
-gpio.pullup(port.PE11, 0) #Clear pullups
-gpio.pullup(port.PE11, gpio.PULLDOWN) #Enable pull-down
-gpio.pullup(port.PE11, gpio.PULLUP) #Enable pull-up
+gpio.pullup(port.PE11, 0) 
+gpio.pullup(port.PE11, gpio.PULLDOWN) 
+gpio.pullup(port.PE11, gpio.PULLUP) 
 
 if gpio.input(port.PE11) == 1:
 gpio.output(port.PG9, gpio.HIGH)
-logging.info("Watering now : %s" % time.ctime())
+logging.info("Watering now : %t" % time.ctime())
+time.sleep(60)
+gpio.output(port.PG9, gpio.LOW)
 else:
 gpio.output(port.PG9, gpio.LOW)
 
 while gpio.input(port.PE11) == 0:
-    logging.info("lol just waiting : %s" % time.ctime())
+    logging.info('lol just waiting : %s' % time.ctime())
+      time.sleep(60)
     
