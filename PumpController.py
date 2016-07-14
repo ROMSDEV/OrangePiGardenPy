@@ -22,17 +22,5 @@ gpio.init()
 gpio.setcfg(port.PG9, gpio.OUTPUT)
 gpio.setcfg(port.PA11, gpio.INPUT)
 
-sensor = port.PA11
-led = port.PG9  
 
-if gpio.input(sensor) == 1:
-    gpio.output(led, 1)
-    logging.info("Watering now : %s" % time.ctime())
-    time.sleep(5)
-    gpio.output(led, 0)
-else:
-    gpio.output(led, 0)
-
-while gpio.input(sensor) == 0:
-    logging.info('lol just waiting : %s' % time.ctime())
-    time.sleep(60)
+pump = port.PG9 
