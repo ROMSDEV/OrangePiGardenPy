@@ -24,7 +24,6 @@ gpio.setcfg(port.PA11, gpio.INPUT)
 
 
 gpio.pullup(port.PA11, 0)
-gpio.pullup(port.PA11, gpio.PULLDOWN)
 gpio.pullup(port.PA11, gpio.PULLUP)
 
 if gpio.input(port.PA11) == 1:
