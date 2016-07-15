@@ -26,7 +26,7 @@ gpio.setcfg(port.PA11, gpio.INPUT)
 gpio.pullup(port.PA11, 0)
 gpio.pullup(port.PA11, gpio.PULLUP)
 
-if gpio.input(port.PA11) == 1:
+if gpio.input(port.PA11) == 0:
     gpio.output(port.PG9, 1)
     logging.info("Watering now : %s" % time.ctime())
     time.sleep(60)
@@ -34,6 +34,6 @@ if gpio.input(port.PA11) == 1:
 else:
     gpio.output(port.PG9, 0)
 
-while gpio.input(port.PA11) == 0:
+while gpio.input(port.PA11) == 1:
     logging.info('lol just waiting : %s' % time.ctime())
     time.sleep(60)
