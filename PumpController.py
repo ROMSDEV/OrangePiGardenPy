@@ -37,5 +37,5 @@ while True:
     else:
         gpio.output(port.PG9, 0)
         logging.info('waiting')
-        time.sleep(5)
+        time.sleep(3600)
 
