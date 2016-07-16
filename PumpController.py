@@ -27,6 +27,8 @@ gpio.setcfg(port.PG8, gpio.INPUT)
 
 gpio.pullup(port.PG8, 0)
 gpio.pullup(port.PG8, gpio.PULLDOWN)
+gpio.pullup(port.PG8, 0)
+gpio.pullup(port.PG9, gpio.PULLDOWN)
 
 while True:
     if gpio.input(port.PG8) == 1:
@@ -36,6 +38,5 @@ while True:
         gpio.output(port.PG9, 0)
     else:
         gpio.output(port.PG9, 0)
-        logging.info('waiting')
+        logging.info('waiting for arduino signal: %s' % time.ctime())
         time.sleep(3600)
-
