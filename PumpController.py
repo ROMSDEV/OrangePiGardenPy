@@ -48,5 +48,5 @@ while True:
         time.sleep(int(check_wait))#wait until next check
     else:
         gpio.output(port.PG9, 0)
-        logging.info('no arduino signal,checking again i 2 hours: %s' % time.ctime())
+        logging.info('no arduino signal,checking again in 2 hours: %s' % time.ctime())
         time.sleep(int(check_wait))
