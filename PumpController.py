@@ -13,8 +13,8 @@ import time
 if not os.getegid() == 0:
     sys.exit('Script must be run as root')
 
-check_wait == 7200 #checks for arduino signal every 2 hours
-pump_on == 4 #turns on the pump for this long (seconds)
+check_wait = 7200 #checks for arduino signal every 2 hours
+pump_on = 4 #turns on the pump for this long (seconds)
 
 #creates a log file
 logging.basicConfig(filename='watering.log',level=logging.DEBUG)
@@ -42,10 +42,10 @@ while True:
     if gpio.input(port.PG8) == 1:
         gpio.output(port.PG9, 1)
         logging.info("Turned the Pump on : %s" % time.ctime())
-        time.sleep(int(pump_on))
+        time.sleep(int(pump_on)) #pump is running
         logging.info("Turned the Pump off : %s" % time.ctime())
-        gpio.output(port.PG9, 0)
-        time.sleep(int(check_wait))
+        gpio.output(port.PG9, 0)#pump off
+        time.sleep(int(check_wait))#wait until next check
     else:
         gpio.output(port.PG9, 0)
         logging.info('waiting for arduino signal: %s' % time.ctime())
