@@ -14,7 +14,7 @@ if not os.getegid() == 0:
     sys.exit('Script must be run as root')
 
 check_wait = 7200 #checks for arduino signal every 2 hours
-pump_on = 4 #turns on the pump for this long (seconds)
+pump_on = 8 #turns on the pump for this long (seconds)
 
 #creates a log file
 logging.basicConfig(filename='watering.log',level=logging.DEBUG)
