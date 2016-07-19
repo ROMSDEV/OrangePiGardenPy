@@ -1,5 +1,5 @@
 const int VAL_PROBE = 0; // Analog pin 0
-const int MOISTURE_LEVEL = 900; // the value after the pump goes on
+const int MOISTURE_LEVEL = 700; // the value after the pump goes on
 int opipin = 8; //recieves the sinal from orangepi
 int OPIsignal = 0; //
 void setup() {
